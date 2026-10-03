@@ -1,0 +1,17 @@
+{
+  "name": "quietvault",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Local desktop password manager built with Electron and Node.js",
+  "main": "src/main.js",
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/*.test.js",
+    "test:desktop": "node scripts/smoke-electron.js",
+    "docs": "node scripts/build-guide.js",
+    "check": "node --check src/main.js && node --check src/preload.js && node --check src/ui/renderer.js && npm test"
+  },
+  "dependencies": { "proper-lockfile": "4.1.2" },
+  "devDependencies": { "electron": "44.5.1", "playwright": "1.63.0" }
+}

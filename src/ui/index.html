@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; object-src 'none'">
+  <title>QuietVault</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-symbol" aria-hidden="true">q</span> QuietVault<span class="brand-dot">.</span></div>
+      <div class="sidebar-label">YOUR PERSONAL SPACE</div>
+      <div class="sidebar-item"><span aria-hidden="true">▤</span> Password vault <span id="side-count" class="badge">—</span></div>
+      <div class="sidebar-note"><span class="status-dot"></span> Local by design<p>Your passwords stay in an encrypted file on this device.</p></div>
+      <div class="sidebar-bottom">A little less to remember.<br><span>Desktop edition · 2.0</span></div>
+    </aside>
+    <main>
+      <header class="topbar"><span>PERSONAL VAULT</span><span id="session-label"><span class="status-dot"></span> Locked</span></header>
+      <section id="login-view" class="login-view">
+        <div class="eyebrow">ONE PASSWORD. YOUR SPACE.</div>
+        <h1 id="welcome">A quiet place for<br>your passwords.</h1>
+        <p id="intro" class="intro">Create your local vault and keep the details that matter together.</p>
+        <form id="login-form" class="login-form">
+          <label for="master">Master password</label>
+          <input id="master" type="password" maxlength="1000" autocomplete="off" spellcheck="false" required>
+          <div id="confirmation">
+            <label for="confirm">Confirm master password</label>
+            <input id="confirm" type="password" maxlength="1000" autocomplete="off" spellcheck="false">
+            <p class="hint">At least 14 characters. There is no password reset.</p>
+          </div>
+          <button id="authenticate" class="primary wide" type="submit">Create vault <span aria-hidden="true">→</span></button>
+        </form>
+        <div class="location-actions"><button id="open-vault" class="text-button">Open existing vault</button><span>·</span><button id="new-location" class="text-button">New vault location</button></div>
+        <p id="login-message" class="message" role="status" aria-live="polite"></p>
+        <div class="file-location"><span>VAULT LOCATION</span><p id="vault-path"></p></div>
+      </section>
+      <section id="vault-view" class="vault-view" hidden>
+        <div class="workspace-header"><div><div class="eyebrow">A LITTLE PEACE OF MIND</div><h1>Your vault<span class="brand-dot">.</span></h1></div><div class="header-actions"><button id="backup">Encrypted backup</button><button id="lock" class="dark">Lock / Log out</button></div></div>
+        <p class="workspace-intro">Everything you need, kept close. <span>Auto-lock after 5 minutes of inactivity.</span></p>
+        <div class="workspace">
+          <section class="accounts" aria-labelledby="accounts-heading">
+            <div class="panel-heading"><h2 id="accounts-heading">Saved accounts</h2><span id="count" class="badge">0</span></div>
+            <label class="sr-only" for="search">Find a login</label><input id="search" class="search" type="search" placeholder="Find a login…" maxlength="1000" autocomplete="off">
+            <div class="list-labels"><span>ACCOUNT</span><span>USERNAME</span></div>
+            <div id="account-list" class="account-list" aria-label="Saved accounts"></div>
+            <div id="empty-list" class="empty-list"><div aria-hidden="true">＋</div><h3>A fresh start.</h3><p>Add your first account.<br>We’ll keep it here for you.</p></div>
+            <button id="new-entry" class="add-button">＋ Add new entry</button>
+          </section>
+          <section class="editor" aria-labelledby="editor-heading">
+            <div class="panel-heading"><h2 id="editor-heading">New entry</h2><span id="save-state" class="save-state">READY</span></div>
+            <form id="entry-form">
+              <label for="title">Account name <span class="required">*</span></label><input id="title" maxlength="1000" placeholder="e.g. University email" required autocomplete="off">
+              <label for="username">Username or email</label><input id="username" maxlength="1000" placeholder="you@example.com" autocomplete="off" spellcheck="false">
+              <div class="label-row"><label for="password">Password <span class="required">*</span></label><button id="generate" type="button" class="text-button">↻ Generate</button></div>
+              <div class="password-row"><input id="password" type="password" maxlength="1000" required autocomplete="off" spellcheck="false"><button id="show-password" type="button" aria-pressed="false">Show</button><button id="copy" type="button">Copy</button></div>
+              <label for="website">Website</label><input id="website" maxlength="1000" placeholder="https://example.com" autocomplete="off" spellcheck="false">
+              <label for="notes">Notes <span class="optional">optional</span></label><textarea id="notes" maxlength="10000" rows="3" placeholder="Anything else worth remembering…" spellcheck="false"></textarea>
+              <div class="editor-actions"><button id="delete" type="button" class="danger" disabled>Delete</button><div><button id="discard" type="button">Discard changes</button><button id="save" type="submit" class="primary">Save entry</button></div></div>
+            </form>
+          </section>
+        </div>
+        <p id="status" class="message" role="status" aria-live="polite">Ready for a new entry.</p>
+      </section>
+      <footer><span>PRIVATE BY DEFAULT</span><span>Stored locally · Encrypted at rest</span></footer>
+    </main>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>
